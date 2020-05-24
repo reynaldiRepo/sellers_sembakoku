@@ -12,7 +12,11 @@ class Home extends CI_Controller {
     
 
     public function index() {
+        if($this->session->userdata("username") == ""){
         $this->load->view("login");
+        }else{
+            redirect("Home/home");
+        }
     }
 
     public function login_pros(){
@@ -60,6 +64,16 @@ class Home extends CI_Controller {
     public function home(){
         $this->cek_session();
         $this->load_view("home", ["Data"=>"data"]);
+    }
+
+    public function produk(){
+        $this->cek_session();
+        $this->load_view("produk", ["data"=>""]);
+    }
+
+    public function add_produk(){
+        $this->cek_session();
+        $this->load_view("add_produk", ["data"=>""]);
     }
 
         

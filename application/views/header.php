@@ -54,7 +54,9 @@
             ============================================ -->
 	<link rel="stylesheet" href="<?= base_url("Asset/")?>css/modals.css">
 	<!-- style CSS
-            ============================================ -->
+			============================================ -->
+	<link rel="stylesheet" href="<?= base_url("Asset/")?>css/data-table/bootstrap-table.css">
+	<link rel="stylesheet" href="<?= base_url("Asset/")?>css/data-table/bootstrap-editable.css">
 	<link rel="stylesheet" href="<?= base_url("Asset/")?>style.css">
 	<!-- responsive CSS
             ============================================ -->
@@ -72,18 +74,18 @@
 	<div class="left-sidebar-pro">
 		<nav id="sidebar" class="">
 			<div class="sidebar-header">
-				<a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+				<a href="<?=base_url()?>"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
 				<strong><img src="img/logo/logosn.png" alt="" /></strong>
 			</div>
 			<div class="left-custom-menu-adp-wrap comment-scrollbar">
 				<nav class="sidebar-nav left-sidebar-menu-pro">
 					<ul class="metismenu" id="menu1">
 						<li class="active">
-							<a href="index.html">
+							<a href="<?=base_url()?>">
 								<i class="fa big-icon fa-home icon-wrap"></i>
 								<span class="mini-click-non">Dashboard</span>
 							</a>
-							<a href="product-list.html">
+							<a href="<?=base_url('Home/produk')?>">
 								<i class="fa big-icon fa-shopping-bag icon-wrap"></i>
 								<span class="mini-click-non">Produk</span>
 							</a>
@@ -115,7 +117,7 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<div class="logo-pro">
-						<a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+						<a href="<?=base_url()?>"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
 					</div>
 				</div>
 			</div>
@@ -138,7 +140,7 @@
 									<div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
 										<div class="header-top-menu tabl-d-n">
 											<ul class="nav navbar-nav mai-top-nav">
-												<li class="nav-item"><a href="index.html" class="nav-link">Dashboard</a>
+												<li class="nav-item"><a href="<?=base_url()?>" class="nav-link">Dashboard</a>
 												</li>
 												<li class="nav-item"><a href="line-charts.html"
 														class="nav-link">Produk</a>
@@ -156,7 +158,8 @@
 														aria-expanded="false" class="nav-link dropdown-toggle">
 														<i class="fa fa-user adminpro-user-rounded header-riht-inf"
 															aria-hidden="true"></i>
-														<span class="admin-name"><?= $this->session->userdata("username")?></span>
+														<span
+															class="admin-name"><?= $this->session->userdata("username")?></span>
 														<i
 															class="fa fa-angle-down adminpro-icon adminpro-down-arrow"></i>
 													</a>
@@ -187,11 +190,11 @@
 								<nav id="dropdown">
 									<ul class="mobile-menu-nav">
 										<li class="active">
-											<a href="index.html">
+											<a href="<?=base_url()?>">
 												<i class="fa big-icon fa-home icon-wrap"></i>
 												<span class="mini-click-non">Dashboard</span>
 											</a>
-											<a href="product-list.html">
+											<a href="<?=base_url('Home/produk')?>">
 												<i class="fa big-icon fa-shopping-bag icon-wrap"></i>
 												<span class="mini-click-non">Produk</span>
 											</a>
