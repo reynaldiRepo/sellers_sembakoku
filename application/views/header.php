@@ -89,14 +89,14 @@
 								<i class="fa big-icon fa-shopping-bag icon-wrap"></i>
 								<span class="mini-click-non">Produk</span>
 							</a>
-							<a href="order.html">
+							<a href="<?=base_url("Home/order")?>">
 								<i class="fa big-icon fa-shopping-cart icon-wrap"></i>
 								<span class="mini-click-non">Order</span>
 							</a>
-							<a href="mailbox.html">
+							<!-- <a href="mailbox.html">
 								<i class="fa big-icon fa-envelope icon-wrap"></i>
 								<span class="mini-click-non">Pesan</span>
-							</a>
+							</a> -->
 							<a href="analytics.html">
 								<i class="big-icon fa fa-line-chart icon-wrap"></i>
 								<span class="mini-click-non">Analytics</span>
@@ -198,13 +198,13 @@
 												<i class="fa big-icon fa-shopping-bag icon-wrap"></i>
 												<span class="mini-click-non">Produk</span>
 											</a>
-											<a href="order.html">
+											<a href="<?=base_url("Home/order")?>">
 												<i class="fa big-icon fa-shopping-cart icon-wrap"></i>
 												<span class="mini-click-non">Order</span>
 											</a>
-											<a href="mailbox.html">
+											<!-- <a href="mailbox.html">
 												<i class="fa big-icon fa-envelope icon-wrap"></i>
-												<span class="mini-click-non">Pesan</span>
+												<span class="mini-click-non">Pesan</span> -->
 											</a>
 											<a href="analytics.html">
 												<i class="big-icon fa fa-line-chart icon-wrap"></i>

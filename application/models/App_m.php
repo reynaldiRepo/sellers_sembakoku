@@ -61,6 +61,7 @@ class App_m extends CI_Model {
 
     public function produk($id_seller)
     {
+        $this->db->order_by('id', 'DESC');
         return $this->db->get_where("items", ["seller_id"=>$id_seller])->result();
     }
 

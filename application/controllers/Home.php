@@ -50,7 +50,7 @@ class Home extends CI_Controller {
         echo $insert;    
     }
 
-    private function load_view($view, $data){
+    private function load_view($view, $data=["data",""]){
         $this->load->view("header", $data);
         $this->load->view($view, $data);
         $this->load->view("footer");
@@ -129,7 +129,7 @@ class Home extends CI_Controller {
     }
 
     public function edit_produk_pros($id_produk){
-        echo $id_produk;
+        $this->cek_session();
         $name = $this->input->post("name");
         $price = $this->input->post("harga");
         $detail = $this->input->post("desc");
@@ -176,6 +176,7 @@ class Home extends CI_Controller {
     }
 
     public function delete_produk($id_produk){
+        $this->cek_session();
         $this->db->delete("items", ["id"=>$id_produk]);
         $this->session->set_flashdata('msg', "<div class='alert alert-success'>Delete Produk Sukses</div>");
         redirect("Home/produk");
@@ -183,7 +184,8 @@ class Home extends CI_Controller {
 
     public function order()
     {
-        
+        $this->cek_session();
+        $this->load_view("order");
     }
 
 }
