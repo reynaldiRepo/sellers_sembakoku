@@ -37,11 +37,40 @@ class App_m extends CI_Model {
         $user = $this->db->get_where("users", ["username"=>$username, "password"=>base64_encode($password)]);
         $rows_user = $user->num_rows();
         if ($rows_user > 0){
-            $id_seller = $this->db->get_where("sellers", ["user_id"=>$user->row_array()["id"]]);
+            $id_seller = $this->db->get_where("sellers", ["user_id"=>$user->row_array()["id"]])->row_array()["id"];
             return [true, $username, $id_seller];
         }else{
             return [false];
         }
+    }
+
+    public function tambah_produk($name, $price, $detail, $stok, $on_sale, $date, $image, $jenis_produk, $seller_id){
+        $this->db->insert("items", 
+            ["name"=>$name,
+            "price"=>$price,
+            "detail"=>$detail,
+            "amount_of_stock"=>$stok,
+            "on_sale"=>$on_sale,
+            "date_of_sell"=>$date,
+            "image_url"=>$image,
+            "itemtype_id"=>$jenis_produk,
+            "seller_id"=>$seller_id,
+            "created"=>date("Y/m/d"), "modified"=>date("Y/m/d")]
+        );
+    }
+
+    public function produk($id_seller)
+    {
+        return $this->db->get_where("items", ["seller_id"=>$id_seller])->result();
+    }
+
+    public function get_produk($id_produk){
+        return $this->db->get_where("items", ["id"=>$id_produk])->row_array();
+    }
+
+    public function edit_produk($id_produk, $data){
+        $this->db->where("id", $id_produk);
+        $this->db->update("items", $data);
     }
 
 

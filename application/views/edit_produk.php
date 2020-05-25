@@ -7,12 +7,12 @@
 					<div class="review-tab-pro-inner">
 						<ul id="myTab3" class="tab-review-design">
 							<li class="active"><a href="#description"><i class="fa fa-pencil" aria-hidden="true"></i>
-									Product Detail</a></li>
+									Product Edit</a></li>
 						</ul>
 						<div id="myTabContent" class="tab-content custom-product-edit">
 							<?= $this->session->flashdata("msg")?>
 							<div class="product-tab-list tab-pane fade active in" id="description">
-								<?php echo form_open_multipart('Home/add_produk_pros');?>
+								<?php echo form_open_multipart('Home/edit_produk_pros/'.$produk["id"]);?>
 									<div class="row">
 										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 											<div class="review-content-section">
@@ -20,13 +20,13 @@
 													<center>
 														<h4>Foto Produk</h4>
 														<img class="img-fluid" id="image-preview"
-															src="<?= base_url("Asset/")?>/img/product-none.png"
+															src="<?= base_url("upload/product/".$produk["image_url"])?>"
 															style="width: 200px;">
 														<hr>
 													</center>
 													<div class="form-group">
 														<input type="file" class="form-control" id="img-in" name="image"
-															required accept="image/*">
+															 accept="image/*">
 													</div>
 												</div>
 											</div>
@@ -39,34 +39,36 @@
 													<select class="form-control" required name="tipe_barang">
 														<option>Jenis Barang</option>
 														<?php foreach($item_type as $it){?>
-														<option value="<?= $it->id?>"><?= $it->information?></option>
+														<option value="<?= $it->id?>" 
+                                                        <?php if($produk["itemtype_id"] == $it->id){echo "selected";}?>
+                                                        ><?= $it->information?></option>
 														<?php } ?>
 													</select>
 												</div>
 												<div class="input-group mg-b-pro-edt">
 													<span class="input-group-addon">Nama Produk</span>
 													<input type="text" class="form-control" required name="name"
-														placeholder="Nama Produk">
+														placeholder="Nama Produk" value="<?=$produk["name"]?>">
 												</div>
 												<div class="input-group mg-b-pro-edt">
 													<span class="input-group-addon">(Harga) Rp.</span>
 													<input type="text" class="form-control" required name="harga"
-														placeholder="Harga">
+														placeholder="Harga" value="<?=$produk["price"]?>">
 												</div>
 												<div class="input-group mg-b-pro-edt">
 													<span class="input-group-addon">Deskripsi</span>
 													<textarea class="form-control" required name="desc"
-														placeholder="Deskripsi"></textarea>
+														placeholder="Deskripsi"><?=$produk["detail"]?></textarea>
 												</div>
 												<div class="input-group mg-b-pro-edt">
 													<span class="input-group-addon">Stok</span>
-													<input type="text" class="form-control" required name="stok"
-														placeholder="Jumlah Stok">
+													<input type="number" min=1 class="form-control" required name="stok"
+														placeholder="Jumlah Stok" value="<?=$produk["amount_of_stock"]?>">
 												</div>
 												<div class="input-group mg-b-pro-edt">
 													<span class="input-group-addon">Diskon</span>
 													<input type="number" min=0 max=100 class="form-control" required
-														name="on_sale" placeholder="diskon" value=0>
+														name="on_sale" placeholder="diskon" value=0 value="<?=$produk["on_sale"]?>">
 													<span class="input-group-addon">%</span>
 												</div>
 											</div>

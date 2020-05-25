@@ -74,7 +74,7 @@
 	<div class="left-sidebar-pro">
 		<nav id="sidebar" class="">
 			<div class="sidebar-header">
-				<a href="<?=base_url()?>"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+				<a href="<?=base_url()?>"><img class="main-logo" src="<?=base_url("Asset/")?>img/logo/logo.png" alt="" /></a>
 				<strong><img src="img/logo/logosn.png" alt="" /></strong>
 			</div>
 			<div class="left-custom-menu-adp-wrap comment-scrollbar">
@@ -142,7 +142,7 @@
 											<ul class="nav navbar-nav mai-top-nav">
 												<li class="nav-item"><a href="<?=base_url()?>" class="nav-link">Dashboard</a>
 												</li>
-												<li class="nav-item"><a href="line-charts.html"
+												<li class="nav-item"><a href="<?=base_url("Home/produk")?>"
 														class="nav-link">Produk</a>
 												</li>
 												<li class="nav-item"><a href="#" class="nav-link">Support</a>
