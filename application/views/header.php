@@ -97,10 +97,10 @@
 								<i class="fa big-icon fa-envelope icon-wrap"></i>
 								<span class="mini-click-non">Pesan</span>
 							</a> -->
-							<a href="analytics.html">
+							<!-- <a href="analytics.html">
 								<i class="big-icon fa fa-line-chart icon-wrap"></i>
 								<span class="mini-click-non">Analytics</span>
-							</a>
+							</a> -->
 							<a href="<?= base_url("Home/profile")?>">
 								<i class="fa big-icon fa-user icon-wrap"></i>
 								<span class="mini-click-non">Profile</span>
@@ -206,10 +206,10 @@
 												<i class="fa big-icon fa-envelope icon-wrap"></i>
 												<span class="mini-click-non">Pesan</span> -->
 											</a>
-											<a href="analytics.html">
+											<!-- <a href="analytics.html">
 												<i class="big-icon fa fa-line-chart icon-wrap"></i>
 												<span class="mini-click-non">Analytics</span>
-											</a>
+											</a> -->
 											<a href="<?= base_url("Home/profile")?>">
 												<i class="fa big-icon fa-user icon-wrap"></i>
 												<span class="mini-click-non">Profile</span>

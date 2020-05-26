@@ -64,7 +64,11 @@ class Home extends CI_Controller {
 
     public function home(){
         $this->cek_session();
-        $this->load_view("home", ["Data"=>"data"]);
+        $data["order"] = $this->db->get_where("transactions", ["seller_id"=>$this->session->userdata("id_seller")])->num_rows();
+        $data["produk"] = $this->db->get_where("items", ["seller_id"=>$this->session->userdata("id_seller")])->num_rows();
+        $data["omset"] = $this->am->get_omset($this->session->userdata("id_seller"));
+        $data["produk_list"] = $this->am->produk($this->session->userdata("id_seller"));
+        $this->load_view("home", $data);
     }
 
     public function produk(){

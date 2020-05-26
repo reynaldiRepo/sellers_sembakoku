@@ -177,6 +177,14 @@ class App_m extends CI_Model {
             ]
         );
     }
+
+    public function get_omset($id_seller)
+    {
+        $sql = "select SUM(transactiondetails.payment_amount) as 'untung'
+        FROM transactions, transactiondetails
+        WHERE transactions.seller_id = '".$id_seller."' and transactions.transactiondetail_id = transactiondetails.id";
+        return $this->db->query($sql)->row_array();
+    }
     
 
 
