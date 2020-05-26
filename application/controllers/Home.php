@@ -182,10 +182,90 @@ class Home extends CI_Controller {
         redirect("Home/produk");
     }
 
-    public function order()
+    public function order($state)
     {
         $this->cek_session();
-        $this->load_view("order");
+        $id_seller = $this->session->userdata("id_seller");
+        $data["state"] = $state;
+        $data["order"] = $this->am->order_get_order($id_seller);
+        $data["dikirim"] = $this->am->order_get_dikirim($id_seller);
+        $data["diterima"] = $this->am->order_get_diterima($id_seller);
+        $data["gagal"] = $this->am->order_get_gagal($id_seller);
+        $this->load_view("order", $data);
     }
+
+    private function _uploadResi()
+    {
+        $config['upload_path']          = './upload/resi';
+        $config['allowed_types']        = 'gif|jpg|png|';
+        $config['file_name']            = date("YmdHis").uniqid()."resi";
+        $config['overwrite']			= true;
+        $config['max_size']             = 1024;
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload("image")) {
+            return [$this->upload->data("file_name"), true];
+        }else{
+            return [$this->upload->display_errors(), false];
+        }   
+    }
+
+    public function send_resi($id_tsStatus)
+    {
+        $this->cek_session();
+        $image = $this->_uploadResi();
+        if($image[1] == true){
+            $this->db->insert("tssends", ["date_status"=>date("Y/m/d"), "resi"=>$image[0]]);
+            $lastid = $this->db->insert_id();
+            $this->db->where("id", $id_tsStatus);
+            $this->db->update("transactionstatus", ["tssend_id"=>$lastid]);
+            $this->session->set_flashdata('msg', "<div class='alert alert-success'>Sukses Kirim Produk</div>");
+            redirect("Home/order/dikirim");
+        }else{
+            $this->session->set_flashdata('msg', "<div class='alert alert-danger'>".$image[0]."</div>");
+            redirect("Home/order/order".$id_produk);
+        }
+        
+    }
+    public function profile(){
+        $this->cek_session();
+        $id_seller = $this->session->userdata("id_seller");
+        $seller_detail = $this->db->get_where("sellers", ["id"=>$id_seller])->row_array()["sellerdetail_id"];
+        $sql = "select * FROM sellers, sellerdetails, users
+        WHERE sellers.user_id = users.id and sellers.sellerdetail_id = sellerdetails.id and sellers.sellerdetail_id = '".$seller_detail."'";
+        $data["seller"] = $this->db->query($sql)->row_array();
+        $this->load_view("profile", $data);
+    }
+
+    public function update_profile(){
+        $this->cek_session();
+        $insert = $this->am->edit_seller($this->session->userdata("id_seller"),
+        $this->input->post("username"),
+        $this->input->post("email"),
+        $this->input->post("alamat"),
+        $this->input->post("no_telp"));
+        $this->session->set_flashdata('msg', "<div class='alert alert-success'>Sukses update profile</div>");
+        redirect("Home/profile");
+    }
+
+    public function reset_password(){
+        $this->cek_session();
+        $seller = $this->db->get_where("sellers", ["id"=>$this->session->userdata("id_seller")]);
+        $user_id = $seller->row_array()["user_id"];
+        $old = $this->db->get_where("users", ["id"=>$user_id, "password"=>base64_encode($this->input->post("pwd1"))])->num_rows();
+        if ($old == 0){
+            $this->session->set_flashdata('msg', "<div class='alert alert-danger'>Password Lama salah</div>");
+            redirect("Home/profile");
+        }else{
+            $this->db->where("id", $user_id);
+            $this->db->update("users", ["password"=>base64_encode($this->input->post("pwd2"))]);
+            $this->session->set_flashdata('msg', "<div class='alert alert-success'>Password berhasil diupdate</div>");
+            redirect("Home/profile");
+
+            
+        }
+    }
+
 
 }

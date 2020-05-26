@@ -89,7 +89,7 @@
 								<i class="fa big-icon fa-shopping-bag icon-wrap"></i>
 								<span class="mini-click-non">Produk</span>
 							</a>
-							<a href="<?=base_url("Home/order")?>">
+							<a href="<?=base_url("Home/order/order")?>">
 								<i class="fa big-icon fa-shopping-cart icon-wrap"></i>
 								<span class="mini-click-non">Order</span>
 							</a>
@@ -101,7 +101,7 @@
 								<i class="big-icon fa fa-line-chart icon-wrap"></i>
 								<span class="mini-click-non">Analytics</span>
 							</a>
-							<a href="profile.html">
+							<a href="<?= base_url("Home/profile")?>">
 								<i class="fa big-icon fa-user icon-wrap"></i>
 								<span class="mini-click-non">Profile</span>
 							</a>
@@ -198,7 +198,7 @@
 												<i class="fa big-icon fa-shopping-bag icon-wrap"></i>
 												<span class="mini-click-non">Produk</span>
 											</a>
-											<a href="<?=base_url("Home/order")?>">
+											<a href="<?=base_url("Home/order/order")?>">
 												<i class="fa big-icon fa-shopping-cart icon-wrap"></i>
 												<span class="mini-click-non">Order</span>
 											</a>
@@ -210,7 +210,7 @@
 												<i class="big-icon fa fa-line-chart icon-wrap"></i>
 												<span class="mini-click-non">Analytics</span>
 											</a>
-											<a href="profile.html">
+											<a href="<?= base_url("Home/profile")?>">
 												<i class="fa big-icon fa-user icon-wrap"></i>
 												<span class="mini-click-non">Profile</span>
 											</a>

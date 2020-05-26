@@ -45,8 +45,8 @@
 										<td><?= $p->amount_of_stock?></td>
 										<td>Rp. <?= $p->price?></td>
 										<td><?= substr($p->date_of_sell,0,10)?></td>
-										<td></td>
-										<td></td>
+										<td><?= $p->nItem?></td>
+										<td><?= (int)$p->nItem * (int)$p->price?></td>
 										<td><?= $p->on_sale?> %</td>
 										<td class="datatable-ct">
 											<a href="<?=base_url("Home/edit_produk/".$p->id)?>" class="btn btn-success"
